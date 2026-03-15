@@ -22,9 +22,7 @@
     --borda-neon: 1px solid rgba(0, 210, 255, 0.3);
 }
 
-/* =========================================
-   2. CONFIGURAÇÕES GERAIS
-   ========================================= */
+/* 2. Configurações Gerais */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -52,9 +50,7 @@ body {
     font-size: 20px;
 }
 
-/* =========================================
-   3. CABEÇALHO E MENU
-   ========================================= */
+/* 3. Cabeçalho e Menu */
 .cabecalho {
     position: fixed;
     top: 0;
@@ -88,9 +84,7 @@ body {
     text-shadow: 0 0 8px rgba(0, 210, 255, 0.5); /* Efeito de brilho neon no texto */
 }
 
-/* =========================================
-   4. ESTRUTURA DAS SEÇÕES
-   ========================================= */
+/* 4. Estrutura das seções */
 .secao {
     min-height: 100vh;
     padding: 120px 20px 60px 20px;
@@ -109,9 +103,7 @@ body {
 #sobre, #portfolio { background-color: var(--cor-fundo-claro); }
 #formacao, #contato { background-color: var(--cor-fundo-escuro); }
 
-/* =========================================
-   5. SEÇÃO SOBRE MIM (CAIXAS SEPARADAS)
-   ========================================= */
+/* 5. Seção sobre mim*/
 .sobre-container {
     display: flex;
     align-items: stretch;
@@ -160,9 +152,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* =========================================
-   6. PORTFÓLIO E FORMAÇÃO
-   ========================================= */
+/* 6. Portifólio e Formação */
 .grid-portfolio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -186,24 +176,70 @@ body {
     border-color: var(--cor-secundaria);
 }
 
-.lista-formacao {
-    background-color: var(--cor-box-2);
-    padding: 40px 40px 40px 60px;
-    border-radius: 15px;
-    max-width: 800px;
+/* Estilos da seção formação (duas colunas) */
+.grid-formacao {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
     width: 100%;
+    max-width: 1100px;
+    margin-top: 30px;
+}
+
+.box-formacao {
+    flex: 1;
+    background-color: var(--cor-box-2);
+    padding: 35px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border-left: 4px solid var(--cor-secundaria);
+    border-top: 4px solid var(--cor-secundaria);
+    transition: transform 0.3s;
+}
+
+.box-formacao:hover {
+    transform: translateY(-5px); /* Efeito sutil de flutuar ao passar o mouse */
+}
+
+.box-formacao h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 15px;
+}
+
+.lista-formacao {
+    list-style: none; /* Remove as bolinhas padrão do HTML */
+    padding: 0;
 }
 
 .lista-formacao li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    position: relative;
+    padding-left: 25px;
+    color: #8892b0; /* Cor um pouco mais suave para o texto secundário */
 }
 
-/* =========================================
-   7. FORMULÁRIO DE CONTATO (DARK MODE)
-   ========================================= */
+/* Criando um marcador customizado (setinha neon) */
+.lista-formacao li::before {
+    content: "▹";
+    color: var(--cor-secundaria);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.lista-formacao li strong {
+    color: #ffffff; /* Destaca o nome do curso em branco */
+    font-size: 1.15rem;
+    display: block; /* Coloca o nome do curso em uma linha separada */
+    margin-bottom: 3px;
+}
+
+/* 7 . Formulário de contato */
 form {
     width: 100%;
     max-width: 700px;
@@ -276,3 +312,15 @@ input[type="submit"]:hover {
     background-color: var(--cor-primaria);
     color: #8892b0;
     text-align: center;
+    padding: 25px;
+    border-top: 1px solid #334155;
+}
+
+/* 8. Responsividade (celular) */
+@media (max-width: 768px) {
+    /* Menu: empilha os links */
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
