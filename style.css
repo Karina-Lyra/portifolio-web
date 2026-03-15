@@ -1,14 +1,19 @@
-/* 1. Variáveis CSS (Ensinado na Aula 4) */
+/* =========================================
+   1. VARIÁVEIS CSS (PALETA DARK TECH)
+   ========================================= */
 :root {
-    --cor-primaria: #333333;
-    --cor-secundaria: #086bdd;
-    --cor-fundo-claro: #f4f4f4;
-    --cor-fundo-escuro: #e2e2e2;
-    --cor-texto: #000000;
-    --cor-branco: #ffffff;
+    --cor-primaria: #0b0f19; /* Fundo principal muito escuro */
+    --cor-secundaria: #00d2ff; /* Azul cyan tecnológico (neon) */
+    --cor-fundo-claro: #1a2235; /* Fundo das seções 1 */
+    --cor-fundo-escuro: #131a2a; /* Fundo das seções 2 */
+    --cor-texto: #e2e8f0; /* Texto claro para leitura */
+    --cor-box-1: #232d45; /* Cor da caixa da foto e portfólio */
+    --cor-box-2: #1e273c; /* Cor da caixa do texto e formulário */
 }
 
-/* 2. Box Model e Seletor Universal (Ensinado na Aula 3/4) */
+/* =========================================
+   2. CONFIGURAÇÕES GERAIS
+   ========================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,14 +25,15 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--cor-texto);
+    background-color: var(--cor-primaria);
+    line-height: 1.6;
 }
 
-/* 3. Pseudo-elementos (Ensinado na Aula 3) */
 ::selection {
     background: var(--cor-secundaria);
-    color: var(--cor-branco);
+    color: #000000;
 }
 
 ::marker {
@@ -35,139 +41,236 @@ body {
     font-size: 20px;
 }
 
-/* 4. Flexbox para o Menu (Ensinado na Aula 3) */
+/* =========================================
+   3. CABEÇALHO E MENU
+   ========================================= */
 .cabecalho {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--cor-primaria);
-    padding: 15px 0;
-    z-index: 1000; /* Ensinado na Aula 2 */
+    background-color: rgba(11, 15, 25, 0.95); /* Fundo escuro com leve transparência */
+    padding: 20px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .menu {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
     list-style: none;
 }
 
-/* 5. Pseudo-classes para Links (Ensinado na Aula 3) */
 .menu a:link, .menu a:visited {
-    color: var(--cor-branco);
+    color: var(--cor-texto);
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
 .menu a:hover, .menu a:focus {
     color: var(--cor-secundaria);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.5); /* Efeito de brilho neon no texto */
 }
 
-/* Estrutura das Seções */
+/* =========================================
+   4. ESTRUTURA DAS SEÇÕES
+   ========================================= */
 .secao {
     min-height: 100vh;
-    padding: 100px 20px 40px 20px;
+    padding: 120px 20px 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.secao h2 {
+    color: var(--cor-secundaria);
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+}
+
 #sobre, #portfolio { background-color: var(--cor-fundo-claro); }
 #formacao, #contato { background-color: var(--cor-fundo-escuro); }
 
-/* 6. CSS Grid Layout para o Portfólio (Ensinado na Aula 4) */
+/* =========================================
+   5. SEÇÃO SOBRE MIM (CAIXAS SEPARADAS)
+   ========================================= */
+.sobre-container {
+    display: flex;
+    align-items: stretch; /* Faz as duas caixas terem a mesma altura */
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+/* Caixa 1: A Foto */
+.sobre-imagem {
+    flex: 1;
+    background-color: var(--cor-box-1);
+    padding: 0; /* Zeramos o padding para a foto encostar nas bordas da caixa */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 4px solid var(--cor-secundaria);
+    overflow: hidden; /* MÁGICA: Corta as pontas da foto para respeitar as bordas arredondadas da caixa */
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: 100%; /* Faz a foto ocupar toda a altura da caixa */
+    object-fit: cover; /* Preenche o espaço sem achatar ou distorcer a sua foto */
+    border-radius: 0; /* Remove o formato redondo antigo */
+    border: none; /* Remove a borda que ficava em volta da foto redonda */
+}
+
+/* Caixa 2: O Texto */
+.sobre-texto {
+    flex: 2;
+    background-color: var(--cor-box-2);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: left;
+    border-top: 4px solid var(--cor-secundaria); /* Detalhe tecnológico no topo */
+}
+
+.sobre-texto h1 {
+    color: var(--cor-secundaria);
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.sobre-texto p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.destaque {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* =========================================
+   6. PORTFÓLIO E FORMAÇÃO
+   ========================================= */
 .grid-portfolio {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Função repeat ensinada na aula */
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
     margin-top: 30px;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 .item-portfolio {
-    background-color: var(--cor-branco);
-    padding: 20px;
-    border: 2px solid var(--cor-primaria);
-    border-radius: 8px;
+    background-color: var(--cor-box-1);
+    padding: 30px;
+    border: 1px solid #334155;
+    border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
 }
 
-/* Estilos do Formulário */
+.item-portfolio:hover {
+    transform: translateY(-10px); /* Efeito de flutuar ao passar o mouse */
+    border-color: var(--cor-secundaria);
+}
+
+.lista-formacao {
+    background-color: var(--cor-box-2);
+    padding: 40px 40px 40px 60px;
+    border-radius: 15px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-left: 4px solid var(--cor-secundaria);
+}
+
+.lista-formacao li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   7. FORMULÁRIO DE CONTATO (DARK MODE)
+   ========================================= */
 form {
     width: 100%;
-    max-width: 600px;
-    background-color: var(--cor-branco);
-    padding: 25px;
-    border-radius: 8px;
-    margin-top: 20px;
+    max-width: 700px;
+    background-color: var(--cor-box-2);
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-top: 4px solid var(--cor-secundaria);
 }
 
 fieldset {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 15px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 20px;
 }
 
 legend {
     font-weight: bold;
-    background-color: var(--cor-fundo-escuro);
-    padding: 5px 10px;
-    border-radius: 3px;
+    color: var(--cor-secundaria);
+    background-color: var(--cor-primaria);
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #334155;
 }
 
+/* Inputs com visual escuro */
 input[type="text"], input[type="password"], select, textarea {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
+    padding: 12px;
+    margin-top: 8px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    border: 1px solid #334155;
+    border-radius: 6px;
+    font-family: inherit;
 }
 
-/* Pseudo-classe :focus no formulário */
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus, textarea:focus, select:focus {
     border-color: var(--cor-secundaria);
     outline: none;
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.2);
 }
 
-/* Pseudo-classe :checked (Ensinado na Aula 3) */
-input[type="checkbox"]:checked + label {
-    font-weight: bold;
+input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
     color: var(--cor-secundaria);
 }
 
 input[type="submit"] {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branco);
+    background-color: var(--cor-secundaria);
+    color: #000000;
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 input[type="submit"]:hover {
-    background-color: var(--cor-secundaria);
+    background-color: #00b8e6;
+    transform: scale(1.02);
 }
 
 .rodape {
     background-color: var(--cor-primaria);
-    color: var(--cor-branco);
+    color: #8892b0;
     text-align: center;
-    padding: 20px;
-}
-
-/* Media Queries para Responsividade (Ensinado na Aula 4) */
-@media (max-width: 768px) {
-    .grid-portfolio {
-        grid-template-columns: 1fr; /* Muda para 1 coluna no celular */
-    }
-    .menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-}
