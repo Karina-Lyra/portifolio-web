@@ -138,53 +138,96 @@ body {
 #sobre, #portfolio { background-color: var(--cor-fundo-claro); }
 #formacao, #contato { background-color: var(--cor-fundo-escuro); }
 
-/* 5. Seção sobre mim*/
-.sobre-container {
+/* 
+   5. SEÇÃO DE BOAS-VINDAS (HERO) 
+*/
+.hero-secao {
+    min-height: 60vh;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: center;
-    gap: 30px;
+    padding: 150px 20px 50px 20px;
+    background-color: var(--cor-primaria);
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
     max-width: 1100px;
     width: 100%;
 }
 
-.sobre-imagem {
-    flex: 1;
-    background-color: var(--cor-box-1);
-    background-image: var(--gradiente-surface);
-    border-radius: 15px;
-    border: var(--borda-neon);
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+.hero-texto { flex: 1; }
+
+.hero-texto h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
 }
 
-.sobre-imagem img {
+.destaque-neon {
+    color: var(--cor-secundaria);
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+}
+
+..hero-imagem-decorativa {
+    flex: 1;
+    opacity: 0.6; /* Deixamos um pouco mais visível, já que a cor está correta */
+    /* REMOVEMOS A LINHA: filter: hue-rotate(180deg); */
+}
+
+.hero-imagem-decorativa img {
+    width: 100%;
+    /* Mantemos a forma orgânica que você gostou */
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; 
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); /* Adicionamos um brilho azul suave */
+}
+
+/* 
+   SEÇÃO SOBRE MIM (BOXES UNIDOS) 
+*/
+.sobre-container-unido {
+    display: flex;
+    max-width: 1100px;
+    width: 100%;
+    background-color: var(--cor-box-2);
+    border-radius: 15px;
+    overflow: hidden; /* Garante que a foto respeite o arredondamento */
+    border: 1px solid #334155;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* O "Pulinho" Neon Padronizado */
+.sobre-container-unido:hover {
+    transform: translateY(-10px);
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+}
+
+.sobre-foto-box {
+    flex: 1;
+    min-width: 350px;
+}
+
+.sobre-foto-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(20%); /* Toque artístico */
-    transition: 0.5s;
+    display: block;
 }
 
-.sobre-imagem:hover img {
-    filter: grayscale(0%);
-    transform: scale(1.05);
+.sobre-texto-box {
+    flex: 1.5;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.sobre-texto {
-    flex: 2;
-    background-color: var(--cor-box-2);
-    background-image: var(--gradiente-surface);
-    padding: 40px;
-    border-radius: 15px;
-    border: var(--borda-neon);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.sobre-texto h1 {
-    color: var(--cor-secundaria);
-    font-size: 2.8rem;
-    margin-bottom: 10px;
+.sobre-texto-box h2 {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 /* 6. Portifólio e Formação */
@@ -534,7 +577,7 @@ input[type="submit"]:hover {
         gap: 20px;
     }
 
-        .topbar {
+    .topbar {
         padding: 10px 20px;
         justify-content: center; /* Centraliza os ícones no celular */
     }
@@ -543,7 +586,21 @@ input[type="submit"]:hover {
         padding: 10px 0 15px 0;
     }
 
-        .contato-linha {
+    .contato-linha {
         flex-direction: column;
-        gap: 0; /* O espaçamento já é dado pela margem dos inputs */
+        gap: 0; /* Espaçamento já é dado pela margem dos inputs */
+    }
+
+    .hero-container, .sobre-container-unido {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sobre-foto-box {
+        min-width: 100%;
+        height: 300px;
+    }
+
+    .hero-imagem-decorativa {
+        display: none; /* Esconde a imagem decorativa no celular para focar no texto */
     }
